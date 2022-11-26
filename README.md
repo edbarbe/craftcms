@@ -3,7 +3,7 @@
 ## Install
 
 ```shell
-git clone git@github.com:onedarnleyroad/craftcms.git PATH
+git clone git@github.com:edbarbe/craftcms.git PATH
 ```
 
 Make sure that `PATH` is a **new** _or_ **existing and empty** folder.
