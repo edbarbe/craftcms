@@ -1,0 +1,68 @@
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # Video
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType video/mpeg "access plus 1 year"
+
+  # CSS, JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+
+  # Others
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType application/x-shockwave-flash "access plus 1 month"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # ----------------------------------------------------------------------
+  # Wordpress and other bad bots
+  # ----------------------------------------------------------------------
+  RedirectMatch 404 (wp-login|wp-admin|wp-config|wp-content|wp-includes|wp-info|xmlrpc)
+
+  # ----------------------------------------------------------------------
+  # Force www for production domain
+  # ----------------------------------------------------------------------
+  RewriteCond %{HTTP_HOST} =domain.tld [NC]
+  RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+  # ----------------------------------------------------------------------
+  # Force https for production domain
+  # ----------------------------------------------------------------------
+  RewriteCond %{HTTP_HOST} =www.domain.tld [NC]
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # ----------------------------------------------------------------------
+  # Remove trailing slashes from frontend requests
+  # Exclude CP & Action URLs
+  # hat=tip: https://www.extreme-creations.co.uk/blog/how-to-remove-a-trailing-slash-in-htaccess-apache-craft-concrete5-expressionengine-lemonstand/
+  # ----------------------------------------------------------------------
+  RewriteCond %{REQUEST_METHOD} =GET
+  RewriteCond %{REQUEST_URI} !^/actions(.*)?
+  RewriteCond %{REQUEST_URI} !^/cpresources(.*)?
+  RewriteCond %{REQUEST_URI} !^/one(.*)?
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+  # ----------------------------------------------------------------------
+  # Send would-be 404 requests to Craft
+  # ----------------------------------------------------------------------
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !^/(favicon\.ico|apple-touch-icon.*\.png)$ [NC]
+  RewriteRule (.+) index.php?p=$1 [QSA,L]
+</IfModule>

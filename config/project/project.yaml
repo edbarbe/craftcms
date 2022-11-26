@@ -1,0 +1,65 @@
+dateModified: 1669417124
+email:
+  fromEmail: edouard.barbe@gmail.com
+  fromName: CraftCMS
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    4a6a00a5-ff10-4196-a6a3-3ce8e1152ed5: CraftCMS # CraftCMS
+    5f753bea-795f-49ea-82c6-adcb13538661: Common # Common
+    c70e98a3-4d3b-4be5-b39f-44874260a09e: CraftCMS # CraftCMS
+plugins:
+  agnostic-fetch:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  async-queue:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  cp-field-inspect:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  imager-x:
+    edition: lite
+    enabled: true
+    licenseKey: NUYA544MSW89622NJEWJRTEK
+    schemaVersion: 3.0.0
+  knock-knock:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.1.1
+  postmark:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.1
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  seomatic:
+    edition: standard
+    enabled: true
+    licenseKey: TCMXJJO37B5SF8SELM0KYWZ0
+    schemaVersion: 3.0.11
+  typedlinkfield:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  vite:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+system:
+  edition: solo
+  live: true
+  name: CraftCMS
+  schemaVersion: 3.7.33
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  requireEmailVerification: true
